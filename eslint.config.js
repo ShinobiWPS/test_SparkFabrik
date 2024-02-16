@@ -12,9 +12,6 @@ export default antfu(
     react: true,
     // svelte: true,
     // unocss: true,
-    stylistic: {
-      'jsx-one-expression-per-line': 'off',
-    },
     ignores: [
       '**/fixtures',
     ],
@@ -26,6 +23,6 @@ export default antfu(
       JsxA11y,
       tailwind,
     },
-    rules: { },
+    rules: { 'style/jsx-one-expression-per-line': ['off'] },
   },
 )
