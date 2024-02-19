@@ -1,10 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { Theme } from 'react-daisyui'
 import App from './App.tsx'
-import './index.css'
+import { AuthProvider } from './entities/auth/auth.context.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <Theme>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </Theme>
   </React.StrictMode>,
 )

@@ -1,33 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Button, Form, Input } from 'react-daisyui'
+import './index.css'
+
+import AuthButton from './entities/auth/auth.component'
+import { useAuth } from './entities/auth/auth.context'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { currentUser, loading } = useAuth()
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+  }
+
+  if (loading)
+    return <div>Loading...</div>
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount(count => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <AuthButton />
+      { currentUser && (
+        <Form onSubmit={handleSubmit}>
+          <Input placeholder="quote here.." />
+          <Input placeholder="author" />
+          <Button type="submit" color="primary">Submit</Button>
+        </Form>
+      ) }
     </>
   )
 }
