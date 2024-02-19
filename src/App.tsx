@@ -1,21 +1,23 @@
 import { Button, Form, Input } from 'react-daisyui'
 import './index.css'
-import SignInButton from './entities/auth/sign-in.component'
+
+import AuthButton from './entities/auth/auth.component'
+import { useAuth } from './entities/auth/auth.context'
 
 function App() {
+  const { currentUser, loading } = useAuth()
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    // Handle form submission logic here
   }
-  const isLoggedIn = false
+
+  if (loading)
+    return <div>Loading...</div>
 
   return (
     <>
-      <Button color="primary">Click me!</Button>
-      { !isLoggedIn && (
-        <SignInButton />
-      ) }
-      { isLoggedIn && (
+      <AuthButton />
+      { currentUser && (
         <Form onSubmit={handleSubmit}>
           <Input placeholder="quote here.." />
           <Input placeholder="author" />
