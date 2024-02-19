@@ -7,7 +7,7 @@ interface AuthContextValue {
   currentUser: User | null
   loading: boolean
 }
-const AuthContext = createContext<AuthContextValue | null>(null)
+const AuthContext = createContext<AuthContextValue>({ currentUser: null, loading: false })
 
 export function useAuth() {
   return useContext(AuthContext)

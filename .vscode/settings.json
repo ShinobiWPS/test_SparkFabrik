@@ -67,6 +67,7 @@
   ],
   "conventionalCommits.scopes": [
     "config",
-    "libraries"
+    "libraries",
+    "types"
   ]
 }
